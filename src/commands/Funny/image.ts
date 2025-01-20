@@ -157,15 +157,15 @@ const command: CommandType = {
           switch (type) {
             case "gay": {
               const image = await new GenerateKissImage(
-                user.displayAvatarURL({ extension: "jpg", size: 4096 }),
-                member.displayAvatarURL({ extension: "jpg", size: 4096 }),
+                user.displayAvatarURL({ extension: "png", forceStatic: true }),
+                member.displayAvatarURL({ extension: "png", forceStatic: true }),
                 true
               ).generate();
               return await response(interaction, {
                 embeds: [
                   new EmbedBuilder()
                     .setTitle("OMG!!!")
-                    .setDescription(`\`${user.username}\` start kissing **${user.username}**`)
+                    .setDescription(`\`${user.username}\` start kissing **${member.user.username}**`)
                     .setColor(HexToNumber(EmbedData.color.pink))
                     .setTimestamp()
                     .setImage(`attachment://${type}-kiss.png`)
@@ -177,15 +177,16 @@ const command: CommandType = {
             }
             case "lesbian": {
               const image = await new GenerateKissImage(
-                user.displayAvatarURL({ extension: "jpg", size: 4096 }),
-                member.displayAvatarURL({ extension: "jpg", size: 4096 }),
+                user.displayAvatarURL({ extension: "png", forceStatic: true }),
+                member.displayAvatarURL({ extension: "png", forceStatic: true }),
+                false,
                 true
               ).generate();
               return await response(interaction, {
                 embeds: [
                   new EmbedBuilder()
                     .setTitle("OMG!!!")
-                    .setDescription(`\`${user.username}\` start kissing **${user.username}**`)
+                    .setDescription(`\`${user.username}\` start kissing **${member.user.username}**`)
                     .setColor(HexToNumber(EmbedData.color.pink))
                     .setTimestamp()
                     .setImage(`attachment://${type}-kiss.png`)

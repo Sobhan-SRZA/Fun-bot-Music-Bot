@@ -1,8 +1,6 @@
 import { Canvas, createCanvas, loadImage, SKRSContext2D } from "@napi-rs/canvas";
 import error from "../utils/error";
-import Images from "../storage/images";
 import { Jimp } from "jimp";
-import { readFileSync } from "fs";
 
 export default class GenerateKissImage {
 
@@ -49,36 +47,49 @@ export default class GenerateKissImage {
     try {
       const canvas = createCanvas(1024, 600);
       const ctx = canvas.getContext("2d");
-
       if (this.isGay) {
         // Draw background
-        // const bg = await loadImage((await Jimp.read(Images.generate.gay)).toString());
-        const bg = await loadImage(readFileSync("./src/storage/images/g404002__kiss.png"));
+        let bg_image: any = await Jimp.read("./images/g404002__kiss.png");
+        bg_image = await bg_image.getBuffer("image/png");
+        const bg = await loadImage(bg_image);
         ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
         // Draw first image
-        const user = await loadImage((await Jimp.read(this.avatar2)).circle().toString())
+        let user_image: any = await Jimp.read(this.avatar2);
+        user_image = user_image.circle();
+        user_image = await user_image.getBuffer("image/png");
+        const user = await loadImage(user_image);
         ctx.drawImage(user, 250, 15, 250, 250);
 
 
         // Draw second image
-        const author = await loadImage((await Jimp.read(this.avatar1)).circle().toString());
+        let author_image: any = await Jimp.read(this.avatar1);
+        author_image = author_image.circle();
+        author_image = await author_image.getBuffer("image/png");
+        const author = await loadImage(author_image);
         ctx.drawImage(author, 590, 20, 250, 250);
       }
 
       else if (this.isLesbian) {
         // Draw background
-        // const bg = await loadImage((await Jimp.read(Images.generate.lesbian)).toString());
-        const bg = await loadImage(readFileSync("./src/storage/images/r412301_lesbian_kiss.png"));
+        let bg_image: any = await Jimp.read("./images/r412301_lesbian_kiss.png");
+        bg_image = await bg_image.getBuffer("image/png");
+        const bg = await loadImage(bg_image);
         ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
         // Draw first image
-        const user = await loadImage((await Jimp.read(this.avatar2)).circle().toString())
+        let user_image: any = await Jimp.read(this.avatar2);
+        user_image = user_image.circle();
+        user_image = await user_image.getBuffer("image/png");
+        const user = await loadImage(user_image);
         ctx.drawImage(user, 250, 175, 250, 250);
 
 
         // Draw second image
-        const author = await loadImage((await Jimp.read(this.avatar1)).circle().toString());
+        let author_image: any = await Jimp.read(this.avatar1);
+        author_image = author_image.circle();
+        author_image = await author_image.getBuffer("image/png");
+        const author = await loadImage(author_image);
         ctx.drawImage(author, 590, 45, 250, 250);
       }
 

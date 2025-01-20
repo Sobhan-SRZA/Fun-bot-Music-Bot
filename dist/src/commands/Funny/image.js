@@ -147,12 +147,12 @@ const command = {
                         return await (0, responseError_1.default)(interaction, `فقط میتوانید دو نوع را انتخاب کنید:\n [ ${types.join(" | ")} ]`);
                     switch (type) {
                         case "gay": {
-                            const image = await new GenerateKissImage_1.default(user.displayAvatarURL({ extension: "jpg", size: 4096 }), member.displayAvatarURL({ extension: "jpg", size: 4096 }), true).generate();
+                            const image = await new GenerateKissImage_1.default(user.displayAvatarURL({ extension: "png", forceStatic: true }), member.displayAvatarURL({ extension: "png", forceStatic: true }), true).generate();
                             return await (0, response_1.default)(interaction, {
                                 embeds: [
                                     new discord_js_1.EmbedBuilder()
                                         .setTitle("OMG!!!")
-                                        .setDescription(`\`${user.username}\` start kissing **${user.username}**`)
+                                        .setDescription(`\`${user.username}\` start kissing **${member.user.username}**`)
                                         .setColor((0, HexToNumber_1.default)(embed_1.default.color.pink))
                                         .setTimestamp()
                                         .setImage(`attachment://${type}-kiss.png`)
@@ -163,12 +163,12 @@ const command = {
                             });
                         }
                         case "lesbian": {
-                            const image = await new GenerateKissImage_1.default(user.displayAvatarURL({ extension: "jpg", size: 4096 }), member.displayAvatarURL({ extension: "jpg", size: 4096 }), true).generate();
+                            const image = await new GenerateKissImage_1.default(user.displayAvatarURL({ extension: "png", forceStatic: true }), member.displayAvatarURL({ extension: "png", forceStatic: true }), false, true).generate();
                             return await (0, response_1.default)(interaction, {
                                 embeds: [
                                     new discord_js_1.EmbedBuilder()
                                         .setTitle("OMG!!!")
-                                        .setDescription(`\`${user.username}\` start kissing **${user.username}**`)
+                                        .setDescription(`\`${user.username}\` start kissing **${member.user.username}**`)
                                         .setColor((0, HexToNumber_1.default)(embed_1.default.color.pink))
                                         .setTimestamp()
                                         .setImage(`attachment://${type}-kiss.png`)
